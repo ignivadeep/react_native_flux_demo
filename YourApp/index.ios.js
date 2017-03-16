@@ -9,14 +9,14 @@ import {
 } from 'react-native';
 
 
-/*import CartStore  from './js/stores/CartStore';
+import CartStore  from './js/stores/CartStore';
 import ProductStore  from './js/stores/ProductStore';
 
-import action  from './js/actions/FluxCartActions';*/
+import action  from './js/actions/FluxCartActions';
 
 
 export default class YourApp extends Component {
-  /*onclick(){
+  onclick(){
     action.receiveProduct([name:'deep'])
   }
 
@@ -32,11 +32,8 @@ export default class YourApp extends Component {
   }
   _onChange() {
     console.log('4')
-  }*/
-
-  onclick(){
-    alert('sd')
   }
+
   render() {
     return (
       <View style={styles.container}>
