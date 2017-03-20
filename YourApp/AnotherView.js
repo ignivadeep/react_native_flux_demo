@@ -19,8 +19,8 @@ export default class AnotherView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0,
-      res:0
+      count: AddStore.getCount(),
+      res: ProductStore.getProductData()
     };
     this._onChange = this._onChange.bind(this);
     this.gotoView = this.gotoView.bind(this);

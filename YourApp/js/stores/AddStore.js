@@ -1,8 +1,7 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Constants from '../constants/Constants';
 import _ from 'underscore';
-
-var EventEmitter = require('events').EventEmitter;
+import {EventEmitter} from 'events';
 var count = 0;
 
 function add() {
@@ -13,24 +12,25 @@ function sub() {
   count--;
 }
 
-var AddStore = _.extend({}, EventEmitter.prototype, {
+class Addstore extends EventEmitter {
 
-  getCount: function () {
+  getCount () {
     return count;
-  },
+  }
 
-  emitChange: function () {
+  emitChange() {
     this.emit('change');
-  },
+  }
 
-  addChangeListener: function (callback) {
+  addChangeListener (callback) {
     this.on('change', callback);
-  },
+  }
 
-  removeChangeListener: function (callback) {
+  removeChangeListener (callback) {
     this.removeListener('change', callback);
   }
-});
+};
+
 
 AppDispatcher.register(function (payload) {
   var action = payload.action;
@@ -49,4 +49,5 @@ AppDispatcher.register(function (payload) {
   return true;
 });
 
-module.exports = AddStore;
+const AddStore = new Addstore;
+export default AddStore;
