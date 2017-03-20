@@ -11,7 +11,7 @@ import {
 
 import AddStore  from './js/stores/AddStore';
 import ProductStore  from './js/stores/ProductStore';
-
+import AnotherView from './AnotherView'
 import action  from './js/actions/Actions';
 
 
@@ -19,62 +19,27 @@ export default class YourApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0,
-      res:1
+      count: 0
     };
-    this._onChange = this._onChange.bind(this);
+    this.gotoView = this.gotoView.bind(this);
   }  
 
-  componentDidMount () {
-    ProductStore.addChangeListener(this._onChange);
-    AddStore.addChangeListener(this._onChange);
-  }
-
-  componentWillUnmount () {
-    ProductStore.removeChangeListener(this._onChange);
-    AddStore.removeChangeListener(this._onChange);
-  }
-
-  gotoView(){
-    
-  }
-
-  onIncclick(){
-    action.incCount();
-  }
-
-  ondecclick(){
-    action.decCount();
-  }
-
-  _onChange() {
-    this.setState({count : AddStore.getCount()});
-    this.setState({res : ProductStore.getProductData()});
+  gotoView(i){
+    this.setState({count : i});
   }
 
   render() {
-    const {count,res} = this.state;
+    const {count} = this.state;
     return (
       <View style={styles.container}>
-
-        <View style={{flexDirection:'row'}}> 
-          <Text style={styles.instructions}>5 ^ {count}</Text>
-          <Text style={styles.instructions}> -> </Text>
-          <Text style={styles.instructions}>{res}</Text>
-        </View>
-
-        <View style={{flexDirection:'row'}}> 
-          <TouchableHighlight onPress={()=>this.onIncclick()} underlayColor={'transparent'}>
-            <Text style={styles.welcome}>Inc</Text>
+        {
+          count==0 ? 
+           <TouchableHighlight onPress={()=>this.gotoView(1)} underlayColor={'transparent'}>
+              <Text style={styles.welcome}>Goto Another View</Text>
             </TouchableHighlight>
-        
-          <TouchableHighlight onPress={()=>this.ondecclick()} underlayColor={'transparent'}>
-            <Text style={styles.welcome}>Dec</Text>
-          </TouchableHighlight>
-        </View>
-         <TouchableHighlight onPress={()=>this.gotoView()} underlayColor={'transparent'}>
-            <Text style={styles.welcome}>Goto Another View</Text>
-          </TouchableHighlight>
+          :
+          <AnotherView gotoView={this.gotoView}/>
+        }
       </View>
     );
   }
