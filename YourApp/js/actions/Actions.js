@@ -1,15 +1,15 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var Constants = require('../constants/Constants');
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import Constants from '../constants/Constants';
 
-var Actions = {
+let Actions = {
 
-  incCount: function () {
+  incCount() {
     AppDispatcher.handleAction({
       actionType: Constants.INC_DATA
     })
   },
 
-  decCount: function () {
+  decCount() {
     AppDispatcher.handleAction({
       actionType: Constants.DEC_DATA
     })

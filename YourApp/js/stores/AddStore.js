@@ -1,9 +1,9 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var EventEmitter = require('events').EventEmitter;
-var Constants = require('../constants/Constants');
-var _ = require('underscore');
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import Constants from '../constants/Constants';
+import _ from 'underscore';
 
-var count = 1;
+var EventEmitter = require('events').EventEmitter;
+var count = 0;
 
 function add() {
   count++;

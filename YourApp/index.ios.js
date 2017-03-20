@@ -8,12 +8,7 @@ import {
   View
 } from 'react-native';
 
-
-import AddStore  from './js/stores/AddStore';
-import ProductStore  from './js/stores/ProductStore';
 import AnotherView from './AnotherView'
-import action  from './js/actions/Actions';
-
 
 export default class YourApp extends Component {
   constructor(props) {

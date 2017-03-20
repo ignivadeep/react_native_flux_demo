@@ -20,13 +20,13 @@ export default class AnotherView extends Component {
     super(props);
     this.state = {
       count: 0,
-      res:1
+      res:0
     };
     this._onChange = this._onChange.bind(this);
     this.gotoView = this.gotoView.bind(this);
   }  
 
-  componentDidMount () {
+  componentDidMount (){
     ProductStore.addChangeListener(this._onChange);
     AddStore.addChangeListener(this._onChange);
   }
@@ -59,7 +59,7 @@ export default class AnotherView extends Component {
       <View style={styles.container}>
 
         <View style={{flexDirection:'row'}}> 
-          <Text style={styles.instructions}>5 ^ {count}</Text>
+          <Text style={styles.instructions}>5 * {count}</Text>
           <Text style={styles.instructions}> -> </Text>
           <Text style={styles.instructions}>{res}</Text>
         </View>
@@ -74,7 +74,7 @@ export default class AnotherView extends Component {
           </TouchableHighlight>
         </View>
          <TouchableHighlight onPress={()=>this.gotoView()} underlayColor={'transparent'}>
-            <Text style={styles.welcome}>Goto Another View</Text>
+            <Text style={styles.welcome}>Back</Text>
           </TouchableHighlight>
       </View>
     );
