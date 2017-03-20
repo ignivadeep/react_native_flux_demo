@@ -1,26 +1,24 @@
-
-
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var Constants = require('../constants/Constants');
 var _ = require('underscore');
 
-var count = 5;
+var count = 1;
 
-function mul() {
-  count*=5 ;
+function add() {
+  count++;
 }
 
-function div() {
-  count/=5;
+function sub() {
+  count--;
 }
 
-var ProductStore = _.extend({}, EventEmitter.prototype, {
+var AddStore = _.extend({}, EventEmitter.prototype, {
 
-  getProductData: function () {
-    return count.toFixed(2);
+  getCount: function () {
+    return count;
   },
- 
+
   emitChange: function () {
     this.emit('change');
   },
@@ -35,21 +33,20 @@ var ProductStore = _.extend({}, EventEmitter.prototype, {
 });
 
 AppDispatcher.register(function (payload) {
-
   var action = payload.action;
-  var text;
   switch (action.actionType) {
     case Constants.INC_DATA:
-      mul();
+      add();
       break;
     case Constants.DEC_DATA:
-      div();
+      sub();
       break;
+
     default:
       return true;
   }
-  ProductStore.emitChange();
+  AddStore.emitChange();
   return true;
 });
 
-module.exports = ProductStore;
+module.exports = AddStore;
